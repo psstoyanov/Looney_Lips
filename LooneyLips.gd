@@ -7,5 +7,16 @@ func _ready():
 	$Blackboard/StoryText.text = story % promt
 	print(story % promt)
 
-func _on_LineEdit_text_entered(new_text):
+
+func _on_TextureButton_pressed():
+	var new_text = $Blackboard/LineEdit.text
 	$Blackboard/StoryText.text = new_text
+	ClearPlayerInput()
+
+func _on_LineEdit_text_entered(new_text):
+	$Blackboard/StoryText.text = new_text	
+	ClearPlayerInput()
+
+func ClearPlayerInput():
+	$Blackboard/LineEdit.text = ""
+
