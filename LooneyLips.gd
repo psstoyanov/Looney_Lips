@@ -1,39 +1,45 @@
 extends Node2D
 
 var player_words = [] # The player words to use for the story
-var prompt = ["thing", "thing", "feeling", "feeling", "action", "feeling"]
-
-var story = "Once upon a time %s ate a %s and felt very %s. He was quite %s to %s very %s"
-
-var template = [{
-		"prompt" : ["thing", "adjective", "feeling", "feeling", "action", "feeling"],
-		"story" : "Once upon a time %s ate a %s and felt very %s. He was quite %s to %s very %s"
-		},{
-		"prompt" : ["noun", "adjective", "verb"],
-		"story" : "Once upon a time %s bough %s and hastily %s."
-		}]
 
 var current_story
 
-var intro = "Welcome to Looney Lips! \nWant to play a game? \n \n"
-var new_word_promt = "Can I have a %s, please?"
-var play_again_txt = "\n\n\n\nDo you want to play again?"
-var button_again = "Again!"
+var intro
+var new_word_prompt
+var play_again_txt
+var button_again
 
 func _ready():
-	prepare_game()
-
-func prepare_game():
 	choose_random_story()
+	get_other_strings()
 	display_intro()
 	$Blackboard/LineEdit.grab_focus()
 
+func get_other_strings():
+	var other_strings = get_from_json("other_strings.json")
+	intro = other_strings.intro
+	new_word_prompt = other_strings.new_word_prompt
+	play_again_txt = other_strings.play_again_txt
+	button_again = other_strings.button_again
+
 func choose_random_story():
 	randomize()
-	current_story = template[randi() % template.size()]
+	var stories = get_from_json("stories.json")
+	current_story = stories[randi() % stories.size()]
+
+func get_from_json(filename):
+	var file = File.new()
+	file.open(filename, File.READ)
+	var text = file.get_as_text()
+	var data = parse_json(text)
+	file.close()
+	return data
 
 func display_intro():
-	$Blackboard/StoryText.text = intro + (new_word_promt % current_story.prompt[player_words.size()])
+	$Blackboard/StoryText.text = intro + ask_for_new_word()
+
+func ask_for_new_word():
+	return new_word_prompt % current_story.prompt[player_words.size()]
 
 func _on_TextureButton_pressed():
 	check_player_words_lenght()
@@ -50,7 +56,7 @@ func check_player_words_lenght():
 		restart_the_game()
 
 func add_player_word_to_story():
-	$Blackboard/StoryText.text = (new_word_promt % current_story.prompt[player_words.size()])
+	$Blackboard/StoryText.text = ask_for_new_word()
 	player_words.append($Blackboard/LineEdit.text)
 	$Blackboard/LineEdit.text = ""
 

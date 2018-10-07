@@ -1,0 +1,21 @@
+[
+	{
+		"prompt": [
+			"thing",
+			"adjective",
+			"feeling",
+			"feeling",
+			"action",
+			"feeling"
+		],
+		"story": "Once upon a time %s ate a %s and felt very %s. He was quite %s to %s very %s"
+	},
+	{
+		"prompt": [
+			"noun",
+			"adjective",
+			"verb"
+		],
+		"story": "Once upon a time %s bough %s and hastily %s."
+	}
+]
