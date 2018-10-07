@@ -4,10 +4,7 @@ var player_words = [] # The player words to use for the story
 
 var current_story
 
-var intro
-var new_word_prompt
-var play_again_txt
-var button_again
+var strings
 
 func _ready():
 	choose_random_story()
@@ -17,10 +14,7 @@ func _ready():
 
 func get_other_strings():
 	var other_strings = get_from_json("other_strings.json")
-	intro = other_strings.intro
-	new_word_prompt = other_strings.new_word_prompt
-	play_again_txt = other_strings.play_again_txt
-	button_again = other_strings.button_again
+	strings = other_strings
 
 func choose_random_story():
 	randomize()
@@ -36,10 +30,10 @@ func get_from_json(filename):
 	return data
 
 func display_intro():
-	$Blackboard/StoryText.text = intro + ask_for_new_word()
+	$Blackboard/StoryText.text = strings.intro + ask_for_new_word()
 
 func ask_for_new_word():
-	return new_word_prompt % current_story.prompt[player_words.size()]
+	return strings.new_word_prompt % current_story.prompt[player_words.size()]
 
 func _on_TextureButton_pressed():
 	check_player_words_lenght()
@@ -65,8 +59,8 @@ func tell_story():
 	show_play_again()
 
 func show_play_again():
-	$Blackboard/StoryText.text += play_again_txt
-	$Blackboard/TextureButton/RichTextLabel.text = button_again
+	$Blackboard/StoryText.text += strings.play_again_txt
+	$Blackboard/TextureButton/RichTextLabel.text = strings.button_again
 	$Blackboard/LineEdit.queue_free() # Remove the LineEdit
 
 func check_if_game_has_finished():
