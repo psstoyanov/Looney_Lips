@@ -22,8 +22,9 @@ func choose_random_story():
 	current_story = stories[randi() % stories.size()]
 
 func get_from_json(filename):
+	var filedir = "res://" + filename
 	var file = File.new()
-	file.open(filename, File.READ)
+	file.open(filedir, File.READ)
 	var text = file.get_as_text()
 	var data = parse_json(text)
 	file.close()
