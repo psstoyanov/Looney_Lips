@@ -32,6 +32,7 @@ func get_from_json(filename):
 
 func display_intro():
 	$Blackboard/StoryText.text = strings.intro + ask_for_new_word()
+	$Blackboard/LineEdit.placeholder_text = ask_for_new_word()
 
 func ask_for_new_word():
 	return strings.new_word_prompt % current_story.prompt[player_words.size()]
@@ -52,6 +53,7 @@ func check_player_words_lenght():
 
 func add_player_word_to_story():
 	$Blackboard/StoryText.text = ask_for_new_word()
+	$Blackboard/LineEdit.placeholder_text = ask_for_new_word()
 	player_words.append($Blackboard/LineEdit.text)
 	$Blackboard/LineEdit.text = ""
 
