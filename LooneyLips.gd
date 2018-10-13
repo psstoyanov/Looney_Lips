@@ -50,6 +50,7 @@ func hide_intro_story_and_start_button():
 	$Blackboard/LineEdit.show()
 	$Blackboard/NewWordButton.show()
 	$Blackboard/LineEdit.placeholder_text = ask_for_new_word()
+	$Blackboard/LineEdit.grab_focus()
 
 func ask_for_new_word():
 	return strings.new_word_prompt % current_story.prompt[player_words.size()]
