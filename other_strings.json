@@ -1,6 +1,7 @@
 {
     "intro": "Welcome to Looney Lips! \nWant to play a game?\n\n",
     "new_word_prompt": "Can I have a %s, please?",
+    "play_game": "Lets Play!",
     "play_again_txt": "\n\n\n\nDo you want to play again?",
     "button_again": "Again!"
 }

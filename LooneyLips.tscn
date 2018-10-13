@@ -72,10 +72,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 40.0
-margin_top = 492.0
-margin_right = 768.0
-margin_bottom = 567.0
+margin_left = 30.0
+margin_top = 29.0
+margin_right = 758.0
+margin_bottom = 104.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -84,24 +84,25 @@ mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
+align = 1
 focus_mode = 2
 context_menu_enabled = true
 placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
-_sections_unfolded = [ "Placeholder", "custom_fonts" ]
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Placeholder", "Rect", "custom_fonts" ]
 
-[node name="TextureButton" type="TextureButton" parent="Blackboard" index="2"]
+[node name="NewWordButton" type="TextureButton" parent="Blackboard" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 788.0
-margin_top = 492.0
-margin_right = 876.0
-margin_bottom = 566.0
+margin_left = 805.0
+margin_top = 33.0
+margin_right = 893.0
+margin_bottom = 107.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -116,9 +117,8 @@ group = null
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
-_sections_unfolded = [ "Textures" ]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Blackboard/TextureButton" index="0"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Blackboard/NewWordButton" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -126,8 +126,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 95.0
 margin_top = 10.0
-margin_right = 182.0
-margin_bottom = 62.0
+margin_right = 201.0
+margin_bottom = 82.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -146,10 +146,67 @@ scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
-_sections_unfolded = [ "Anchor", "Margin" ]
+_sections_unfolded = [ "Anchor", "Margin", "custom_fonts" ]
+
+[node name="StartGameButton" type="TextureButton" parent="Blackboard" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 371.0
+margin_top = 485.0
+margin_right = 450.0
+margin_bottom = 557.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+expand = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Blackboard/StartGameButton" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 97.0
+margin_top = 10.0
+margin_right = 363.0
+margin_bottom = 101.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "Placeholder"
+scroll_active = false
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [connection signal="text_entered" from="Blackboard/LineEdit" to="." method="_on_LineEdit_text_entered"]
 
-[connection signal="pressed" from="Blackboard/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Blackboard/NewWordButton" to="." method="_on_NewWordButton_pressed"]
+
+[connection signal="pressed" from="Blackboard/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 
 
